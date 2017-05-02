@@ -1,13 +1,14 @@
 package alg.util;
 
 import alg.util.func.Func2;
+import alg.util.tuple.Pair;
 
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Supplier;
 
 /**
- * Created by Yuhuan Jiang on 4/30/17.
+ * 
  */
 public class IterableU {
     
@@ -54,6 +55,47 @@ public class IterableU {
             }
         });
     }
+    
+    public static <X> Iterable<Pair<Integer, X>> indexed(Iterable<X> xs) {
+        return IterableU.fromIterator(() -> new Iterator<Pair<Integer, X>>() {
+            Iterator<X> iter = xs.iterator();
+            int idx = 0;
+            
+            @Override
+            public boolean hasNext() {
+                return iter.hasNext();
+            }
+
+            @Override
+            public Pair<Integer, X> next() {
+                int i = idx;
+                idx += 1;
+                return new Pair(i, iter.next());
+            }
+        });
+    } 
+    
+    public static <X, Y, Z> Iterable<Z> zippedWith(Iterable<X> xs, Iterable<Y> ys, Func2<X, Y, Z> f) {
+        return IterableU.fromIterator(() -> new Iterator<Z>() {
+            Iterator<X> xi = xs.iterator();
+            Iterator<Y> yi = ys.iterator();
+            
+            @Override
+            public boolean hasNext() {
+                return xi.hasNext() && yi.hasNext();
+            }
+
+            @Override
+            public Z next() {
+                return f.apply(xi.next(), yi.next());
+            }
+        });
+    }
+    
+    public static <X, Y> Iterable<Pair<X, Y>> zipped(Iterable<X> xs, Iterable<Y> ys) {
+        return zippedWith(xs, ys, Pair::new);
+    }
+    
     
     
 }

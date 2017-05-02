@@ -1,14 +1,12 @@
 package alg.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Yuhuan Jiang on 5/2/17.
  */
 public class ListU {
+    
     public static <X> List<X> of(X... xs) {
         // Few items => linked list
         // Many items => array list
@@ -24,4 +22,9 @@ public class ListU {
         }
 
     }
+    
+    public static <X, Y extends X> void updateElementsWith(List<X> xs, List<Y> ys) {
+        for (int i = 0; i < xs.size(); i++) xs.set(i, ys.get(i));
+    }
+    
 }

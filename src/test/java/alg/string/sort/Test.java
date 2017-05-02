@@ -67,6 +67,8 @@ public class Test {
         
         List<Student> sorted = KeyIndexCounting.sort(students, Student::getSection);
         
+        KeyIndexCounting.sortInplace(students, Student::getSection);
+        
         int bp = 0;
     }
 }
