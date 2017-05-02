@@ -16,7 +16,6 @@ import java.util.function.Function;
  * The keys should be any integer starting from 0 and less than a constant R. 
  */
 public class KeyIndexCounting {
-
     
     public static <X> List<X> sort(List<X> xs, int r, Function<X, Integer> keySelector) {
         int[] counts = new int[r+1];
@@ -51,6 +50,5 @@ public class KeyIndexCounting {
         List<X> sorted = sort(xs, keySelector);
         ListU.updateElementsWith(xs, sorted);
     }
-
-
+    
 }
