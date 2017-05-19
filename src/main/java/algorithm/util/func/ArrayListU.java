@@ -1,4 +1,4 @@
-package alg.util.func;
+package algorithm.util.func;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;

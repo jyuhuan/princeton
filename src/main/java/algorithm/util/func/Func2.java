@@ -1,4 +1,4 @@
-package alg.util.func;
+package algorithm.util.func;
 
 /**
  * Created by Yuhuan Jiang on 4/30/17.
